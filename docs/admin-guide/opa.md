@@ -26,6 +26,7 @@ See the [:octicons-link-external-24: Gatekeeper Documentation](https://open-poli
 By default, karina deploys gatekeeper with a selection of the default constrainttemplates found in the [:octicons-link-external-24: gatekeeper example library](https://github.com/open-policy-agent/gatekeeper-library).  These include:
 
 - K8sAllowedRepos 
+- K8sBannedImageTags
 - K8sBlockNodePort
 - K8sContainerLimits
 - K8sContainerRatios
