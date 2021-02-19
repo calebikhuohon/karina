@@ -117,10 +117,13 @@ func InstallGatekeeper(p *platform.Platform) error {
 	}
 
 	if p.Gatekeeper.Templates != "" && !p.DryRun {
-		start := time.Now()
 		if err := deployTemplates(p, p.Gatekeeper.Templates); err != nil {
 			return err
 		}
+	}
+
+	if !p.DryRun {
+		start := time.Now()
 
 		templateClient, err := p.GetClientByKind("ConstraintTemplate")
 
