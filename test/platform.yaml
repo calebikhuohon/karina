@@ -16,7 +16,6 @@ opa:
 gatekeeper:
   version: "v3.3.0"
   templates: test/opa/templates
-  constraints: test/opa/constraints
   auditInterval: 10
   e2e:
     fixtures: test/opa/gatekeeper-fixtures
