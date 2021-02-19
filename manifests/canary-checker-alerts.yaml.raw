@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: canary-checker-rules
+  namespace: platform-system
+spec:
+  groups:
+    - name: canary-severity
+      rules:
+        - alert: PostgresHeartbeatDown
+          annotations:
+            message: Postgres {{ $labels.exported_endpoint }} is down
+          expr: canary_check{type="postgres"} > 0
+          for: 1m
+          labels:
+            severity: critical
+        - alert: GenericCanaryActive
+          annotations:
+            message: Canary monitoring {{ $labels.type }} instance {{ $labels.exported_endpoint }} active
+          expr: canary_check > 0
+          for: 10m
+          labels:
+            severity: warning
+
